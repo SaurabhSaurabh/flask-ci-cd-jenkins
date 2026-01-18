@@ -1,0 +1,266 @@
+Started by user admin
+Checking out git git@github.com:SaurabhSaurabh/flask-ci-cd-jenkins.git into /var/lib/jenkins/workspace/flask-ci-cd-pipeline@script/ad801f3c51c460c9ab7dad1c1bfcd460b8f4a0fbd5413ac779106e3d1567524c to read Jenkinsfile
+The recommended git tool is: NONE
+using credential saurabhsuman
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/flask-ci-cd-pipeline@script/ad801f3c51c460c9ab7dad1c1bfcd460b8f4a0fbd5413ac779106e3d1567524c/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url git@github.com:SaurabhSaurabh/flask-ci-cd-jenkins.git # timeout=10
+Fetching upstream changes from git@github.com:SaurabhSaurabh/flask-ci-cd-jenkins.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.34.1'
+using GIT_SSH to set credentials 
+Verifying host key using known hosts file
+ > git fetch --tags --force --progress -- git@github.com:SaurabhSaurabh/flask-ci-cd-jenkins.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision bb4e465a65a12b9c8bd339c04e6b5cc09f2cfdeb (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f bb4e465a65a12b9c8bd339c04e6b5cc09f2cfdeb # timeout=10
+Commit message: "adding jenkins file"
+ > git rev-list --no-walk bb4e465a65a12b9c8bd339c04e6b5cc09f2cfdeb # timeout=10
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/flask-ci-cd-pipeline
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+The recommended git tool is: NONE
+using credential saurabhsuman
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/flask-ci-cd-pipeline/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url git@github.com:SaurabhSaurabh/flask-ci-cd-jenkins.git # timeout=10
+Fetching upstream changes from git@github.com:SaurabhSaurabh/flask-ci-cd-jenkins.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.34.1'
+using GIT_SSH to set credentials 
+Verifying host key using known hosts file
+ > git fetch --tags --force --progress -- git@github.com:SaurabhSaurabh/flask-ci-cd-jenkins.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision bb4e465a65a12b9c8bd339c04e6b5cc09f2cfdeb (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f bb4e465a65a12b9c8bd339c04e6b5cc09f2cfdeb # timeout=10
+Commit message: "adding jenkins file"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withCredentials
+Masking supported pattern matches of $MONGO_URI
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] sh
++ python3 -m venv venv
++ . venv/bin/activate
++ deactivate nondestructive
++ [ -n  ]
++ [ -n  ]
++ [ -n  -o -n  ]
++ [ -n  ]
++ unset VIRTUAL_ENV
++ unset VIRTUAL_ENV_PROMPT
++ [ ! nondestructive = nondestructive ]
++ VIRTUAL_ENV=/var/lib/jenkins/workspace/flask-ci-cd-pipeline/venv
++ export VIRTUAL_ENV
++ _OLD_VIRTUAL_PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
++ PATH=/var/lib/jenkins/workspace/flask-ci-cd-pipeline/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
++ export PATH
++ [ -n  ]
++ [ -z  ]
++ _OLD_VIRTUAL_PS1=$ 
++ PS1=(venv) $ 
++ export PS1
++ VIRTUAL_ENV_PROMPT=(venv) 
++ export VIRTUAL_ENV_PROMPT
++ [ -n  -o -n  ]
++ pip install --upgrade pip
+Requirement already satisfied: pip in ./venv/lib/python3.10/site-packages (22.0.2)
+Collecting pip
+  Downloading pip-25.3-py3-none-any.whl (1.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 18.7 MB/s eta 0:00:00
+Installing collected packages: pip
+  Attempting uninstall: pip
+    Found existing installation: pip 22.0.2
+    Uninstalling pip-22.0.2:
+      Successfully uninstalled pip-22.0.2
+Successfully installed pip-25.3
++ pip install -r requirements.txt
+Collecting Flask (from -r requirements.txt (line 1))
+  Downloading flask-3.1.2-py3-none-any.whl.metadata (3.2 kB)
+Collecting Flask-PyMongo (from -r requirements.txt (line 2))
+  Downloading flask_pymongo-3.0.1-py3-none-any.whl.metadata (3.5 kB)
+Collecting python-dotenv (from -r requirements.txt (line 3))
+  Downloading python_dotenv-1.2.1-py3-none-any.whl.metadata (25 kB)
+Collecting pymongo (from -r requirements.txt (line 4))
+  Downloading pymongo-4.16.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (10.0 kB)
+Collecting pytest (from -r requirements.txt (line 5))
+  Downloading pytest-9.0.2-py3-none-any.whl.metadata (7.6 kB)
+Collecting pylint (from -r requirements.txt (line 6))
+  Downloading pylint-4.0.4-py3-none-any.whl.metadata (12 kB)
+Collecting bandit (from -r requirements.txt (line 7))
+  Downloading bandit-1.9.2-py3-none-any.whl.metadata (7.1 kB)
+Collecting black (from -r requirements.txt (line 8))
+  Downloading black-26.1.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (88 kB)
+Collecting blinker>=1.9.0 (from Flask->-r requirements.txt (line 1))
+  Downloading blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+Collecting click>=8.1.3 (from Flask->-r requirements.txt (line 1))
+  Downloading click-8.3.1-py3-none-any.whl.metadata (2.6 kB)
+Collecting itsdangerous>=2.2.0 (from Flask->-r requirements.txt (line 1))
+  Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+Collecting jinja2>=3.1.2 (from Flask->-r requirements.txt (line 1))
+  Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting markupsafe>=2.1.1 (from Flask->-r requirements.txt (line 1))
+  Downloading markupsafe-3.0.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+Collecting werkzeug>=3.1.0 (from Flask->-r requirements.txt (line 1))
+  Downloading werkzeug-3.1.5-py3-none-any.whl.metadata (4.0 kB)
+Collecting dnspython<3.0.0,>=2.6.1 (from pymongo->-r requirements.txt (line 4))
+  Downloading dnspython-2.8.0-py3-none-any.whl.metadata (5.7 kB)
+Collecting exceptiongroup>=1 (from pytest->-r requirements.txt (line 5))
+  Downloading exceptiongroup-1.3.1-py3-none-any.whl.metadata (6.7 kB)
+Collecting iniconfig>=1.0.1 (from pytest->-r requirements.txt (line 5))
+  Downloading iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)
+Collecting packaging>=22 (from pytest->-r requirements.txt (line 5))
+  Downloading packaging-25.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting pluggy<2,>=1.5 (from pytest->-r requirements.txt (line 5))
+  Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+Collecting pygments>=2.7.2 (from pytest->-r requirements.txt (line 5))
+  Downloading pygments-2.19.2-py3-none-any.whl.metadata (2.5 kB)
+Collecting tomli>=1 (from pytest->-r requirements.txt (line 5))
+  Downloading tomli-2.4.0-py3-none-any.whl.metadata (10 kB)
+Collecting astroid<=4.1.dev0,>=4.0.2 (from pylint->-r requirements.txt (line 6))
+  Downloading astroid-4.0.3-py3-none-any.whl.metadata (4.4 kB)
+Collecting dill>=0.2 (from pylint->-r requirements.txt (line 6))
+  Downloading dill-0.4.0-py3-none-any.whl.metadata (10 kB)
+Collecting isort!=5.13,<8,>=5 (from pylint->-r requirements.txt (line 6))
+  Downloading isort-7.0.0-py3-none-any.whl.metadata (11 kB)
+Collecting mccabe<0.8,>=0.6 (from pylint->-r requirements.txt (line 6))
+  Downloading mccabe-0.7.0-py2.py3-none-any.whl.metadata (5.0 kB)
+Collecting platformdirs>=2.2 (from pylint->-r requirements.txt (line 6))
+  Downloading platformdirs-4.5.1-py3-none-any.whl.metadata (12 kB)
+Collecting tomlkit>=0.10.1 (from pylint->-r requirements.txt (line 6))
+  Downloading tomlkit-0.14.0-py3-none-any.whl.metadata (2.8 kB)
+Collecting typing-extensions>=4 (from astroid<=4.1.dev0,>=4.0.2->pylint->-r requirements.txt (line 6))
+  Downloading typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting PyYAML>=5.3.1 (from bandit->-r requirements.txt (line 7))
+  Downloading pyyaml-6.0.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+Collecting stevedore>=1.20.0 (from bandit->-r requirements.txt (line 7))
+  Downloading stevedore-5.6.0-py3-none-any.whl.metadata (2.3 kB)
+Collecting rich (from bandit->-r requirements.txt (line 7))
+  Downloading rich-14.2.0-py3-none-any.whl.metadata (18 kB)
+Collecting mypy-extensions>=0.4.3 (from black->-r requirements.txt (line 8))
+  Downloading mypy_extensions-1.1.0-py3-none-any.whl.metadata (1.1 kB)
+Collecting pathspec>=1.0.0 (from black->-r requirements.txt (line 8))
+  Downloading pathspec-1.0.3-py3-none-any.whl.metadata (13 kB)
+Collecting pytokens>=0.3.0 (from black->-r requirements.txt (line 8))
+  Downloading pytokens-0.3.0-py3-none-any.whl.metadata (2.0 kB)
+Collecting markdown-it-py>=2.2.0 (from rich->bandit->-r requirements.txt (line 7))
+  Downloading markdown_it_py-4.0.0-py3-none-any.whl.metadata (7.3 kB)
+Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich->bandit->-r requirements.txt (line 7))
+  Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+Downloading flask-3.1.2-py3-none-any.whl (103 kB)
+Downloading flask_pymongo-3.0.1-py3-none-any.whl (11 kB)
+Downloading python_dotenv-1.2.1-py3-none-any.whl (21 kB)
+Downloading pymongo-4.16.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (1.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 69.6 MB/s  0:00:00
+Downloading dnspython-2.8.0-py3-none-any.whl (331 kB)
+Downloading pytest-9.0.2-py3-none-any.whl (374 kB)
+Downloading pluggy-1.6.0-py3-none-any.whl (20 kB)
+Downloading pylint-4.0.4-py3-none-any.whl (536 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.4/536.4 kB 26.0 MB/s  0:00:00
+Downloading astroid-4.0.3-py3-none-any.whl (276 kB)
+Downloading isort-7.0.0-py3-none-any.whl (94 kB)
+Downloading mccabe-0.7.0-py2.py3-none-any.whl (7.3 kB)
+Downloading bandit-1.9.2-py3-none-any.whl (134 kB)
+Downloading black-26.1.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (1.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 84.4 MB/s  0:00:00
+Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
+Downloading click-8.3.1-py3-none-any.whl (108 kB)
+Downloading dill-0.4.0-py3-none-any.whl (119 kB)
+Downloading exceptiongroup-1.3.1-py3-none-any.whl (16 kB)
+Downloading iniconfig-2.3.0-py3-none-any.whl (7.5 kB)
+Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+Downloading markupsafe-3.0.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (20 kB)
+Downloading mypy_extensions-1.1.0-py3-none-any.whl (5.0 kB)
+Downloading packaging-25.0-py3-none-any.whl (66 kB)
+Downloading pathspec-1.0.3-py3-none-any.whl (55 kB)
+Downloading platformdirs-4.5.1-py3-none-any.whl (18 kB)
+Downloading pygments-2.19.2-py3-none-any.whl (1.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 76.2 MB/s  0:00:00
+Downloading pytokens-0.3.0-py3-none-any.whl (12 kB)
+Downloading pyyaml-6.0.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (770 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 770.3/770.3 kB 44.7 MB/s  0:00:00
+Downloading stevedore-5.6.0-py3-none-any.whl (54 kB)
+Downloading tomli-2.4.0-py3-none-any.whl (14 kB)
+Downloading tomlkit-0.14.0-py3-none-any.whl (39 kB)
+Downloading typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+Downloading werkzeug-3.1.5-py3-none-any.whl (225 kB)
+Downloading rich-14.2.0-py3-none-any.whl (243 kB)
+Downloading markdown_it_py-4.0.0-py3-none-any.whl (87 kB)
+Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Installing collected packages: typing-extensions, tomlkit, tomli, stevedore, PyYAML, pytokens, python-dotenv, pygments, pluggy, platformdirs, pathspec, packaging, mypy-extensions, mdurl, mccabe, markupsafe, itsdangerous, isort, iniconfig, dnspython, dill, click, blinker, werkzeug, pymongo, markdown-it-py, jinja2, exceptiongroup, black, astroid, rich, pytest, pylint, Flask, Flask-PyMongo, bandit
+
+Successfully installed Flask-3.1.2 Flask-PyMongo-3.0.1 PyYAML-6.0.3 astroid-4.0.3 bandit-1.9.2 black-26.1.0 blinker-1.9.0 click-8.3.1 dill-0.4.0 dnspython-2.8.0 exceptiongroup-1.3.1 iniconfig-2.3.0 isort-7.0.0 itsdangerous-2.2.0 jinja2-3.1.6 markdown-it-py-4.0.0 markupsafe-3.0.3 mccabe-0.7.0 mdurl-0.1.2 mypy-extensions-1.1.0 packaging-25.0 pathspec-1.0.3 platformdirs-4.5.1 pluggy-1.6.0 pygments-2.19.2 pylint-4.0.4 pymongo-4.16.0 pytest-9.0.2 python-dotenv-1.2.1 pytokens-0.3.0 rich-14.2.0 stevedore-5.6.0 tomli-2.4.0 tomlkit-0.14.0 typing-extensions-4.15.0 werkzeug-3.1.5
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test)
+[Pipeline] sh
++ . venv/bin/activate
++ deactivate nondestructive
++ [ -n  ]
++ [ -n  ]
++ [ -n  -o -n  ]
++ [ -n  ]
++ unset VIRTUAL_ENV
++ unset VIRTUAL_ENV_PROMPT
++ [ ! nondestructive = nondestructive ]
++ VIRTUAL_ENV=/var/lib/jenkins/workspace/flask-ci-cd-pipeline/venv
++ export VIRTUAL_ENV
++ _OLD_VIRTUAL_PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
++ PATH=/var/lib/jenkins/workspace/flask-ci-cd-pipeline/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
++ export PATH
++ [ -n  ]
++ [ -z  ]
++ _OLD_VIRTUAL_PS1=$ 
++ PS1=(venv) $ 
++ export PS1
++ VIRTUAL_ENV_PROMPT=(venv) 
++ export VIRTUAL_ENV_PROMPT
++ [ -n  -o -n  ]
++ pytest --maxfail=1 --disable-warnings -q
+....                                                                     [100%]
+4 passed in 6.02s
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy to Staging)
+[Pipeline] sh
++ echo Deploying Flask app to staging...
+Deploying Flask app to staging...
++ pkill -f venv/bin/python app.py
++ true
++ nohup venv/bin/python app.py
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] emailext
+Sending email to: sumansaurabh123@gmail.com
+Connection error sending email, retrying once more in 10 seconds...
+Connection error sending email, retrying once more in 10 seconds...
+Failed after second try sending email
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
