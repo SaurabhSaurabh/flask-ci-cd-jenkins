@@ -1,133 +1,120 @@
-# Student Registration System
-
-A simple **Flask** web application to manage student records with **MongoDB** as the backend database. Users can **add, view, update, and delete** student details.
+# 🚀 CI/CD with Jenkins – Assignment
 
 ---
 
-## Features
-
-* List all students on the home page
-* Add a new student
-* Update existing student details
-* Delete a student with confirmation
-* Simple and responsive UI using Bootstrap
-
----
-
-## Tech Stack
-
-* **Backend:** Python, Flask
-* **Database:** MongoDB (via Flask-PyMongo)
-* **Frontend:** HTML, Jinja2 templates, Bootstrap 5
-* **Environment Variables:** Managed via `.env` file
+## 1️⃣ Objective
+Set up a Jenkins CI/CD pipeline that:
+- Pulls code from GitHub  
+- Builds and tests automatically  
+- Sends email notifications (via Gmail SMTP)  
+- Optionally deploys artifacts  
 
 ---
 
-## Setup Instructions
-
-### 1. Clone the repository
-
-```bash
-git clone <your-repo-url>
-cd <repo-folder>
-```
-
-### 2. Create and activate a virtual environment
-
-```bash
-python -m venv venv
-# Activate venv
-# Windows:
-venv\Scripts\activate
-# Linux / Mac:
-source venv/bin/activate
-```
-
-### 3. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-**`requirements.txt` example:**
-
-```
-Flask
-Flask-PyMongo
-python-dotenv
-bson
-```
-
-### 4. Configure environment variables
-
-Create a `.env` file in the project root:
-
-```
-MONGO_URI=<your-mongodb-connection-string>
-SECRET_KEY=<your-secret-key>
-```
-
-### 5. Run the application
-
-```bash
-python app.py
-```
-
-Open your browser at: [http://localhost:8000](http://localhost:8000)
+## 2️⃣ Prerequisites
+- **Ubuntu server / EC2 instance** with Jenkins installed  
+- **Java & Maven** (or Node.js, depending on project)  
+- **GitHub repository** with sample project  
+- **Gmail App Password** for SMTP  
+- Installed Jenkins plugins:
+  - GitHub Integration  
+  - Pipeline  
+  - Email Extension (emailext)  
 
 ---
 
-## Project Structure
+## 3️⃣ Jenkins Setup
+1. **Install Jenkins**  
+   ```bash
+   sudo apt update
+   sudo apt install openjdk-11-jdk -y
+   wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+   sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+   sudo apt update
+   sudo apt install jenkins -y
+   sudo systemctl enable jenkins
+   sudo systemctl start jenkins
+   ```
 
+2. **Access Jenkins**  
+   - Open browser → `http://<server-ip>:8080`  
+   - Unlock Jenkins with initial admin password (`/var/lib/jenkins/secrets/initialAdminPassword`)
+   - Jenkins Dashboard →
+     `![Dashboard](screenshots/dashboard.png)`
+
+3. **Install Plugins**  
+   - Go to **Manage Jenkins → Plugins → Available**  
+   - Install **Pipeline** and **Email Extension Plugin**  
+
+---
+
+## 4️⃣ Configure SMTP (Gmail TLS)
+- Go to **Manage Jenkins → Configure System → Extended E‑mail Notification**  
+- Fill in:
+  - **SMTP server**: `smtp.gmail.com`  
+  - **SMTP Port**: `587`  
+  - **Use TLS**: ✔️  
+  - **Authentication**: ✔️  
+    - Username: `sumansaurabh123@gmail.com`  
+    - Password: Gmail App Password  
+- Save and test with “Send test e‑mail”.
+
+---
+
+## 5️⃣ Create Pipeline Job
+1. Go to **New Item → Pipeline**  
+2. Link to your GitHub repo (with Jenkinsfile).  
+3. Save.
+- Pipeline Config → `![Pipeline Config](screenshots/pipeline-config.png)` 
+
+---
+
+## 6️⃣ Jenkinsfile Example
+```groovy
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/username/repo.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+    }
+    post {
+        success {
+            emailext(
+                subject: "✅ Build Success: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "The build succeeded!\nCheck console output at ${env.BUILD_URL}",
+                to: "sumansaurabh123@gmail.com, saiyedin786@gmail.com"
+            )
+        }
+        failure {
+            emailext(
+                subject: "❌ Build Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "The build failed.\nCheck console output at ${env.BUILD_URL}",
+                to: "sumansaurabh123@gmail.com, saiyedin786@gmail.com"
+            )
+        }
+    }
+}
 ```
-project/
-│
-├── templates/
-│   ├── base.html
-│   ├── index.html
-│   ├── add_student.html
-│   ├── update_student.html
-│
-├── app.py
-├── requirements.txt
-└── .env
-```
 
 ---
 
-## Screenshots
-
-**Home Page**
-Lists all students with Edit/Delete buttons.
-- <img width="1902" height="607" alt="image" src="https://github.com/user-attachments/assets/a58a6a6d-4978-4769-8074-232e4d31e69d" />
-
-
-**Add Student**
-Form to add a new student.
-- <img width="1897" height="801" alt="image" src="https://github.com/user-attachments/assets/d65d25c3-ebb5-410a-adb1-e130ad7c5878" />
-
-
-**Update Student**
-Form pre-filled with student details.
-- <img width="1905" height="897" alt="image" src="https://github.com/user-attachments/assets/04febf01-879f-431f-ab07-abcfb993acf1" />
-
-
-
----
-
-## Notes
-
-* Make sure MongoDB is running and accessible via the URI in `.env`
-* Delete action includes a confirmation page to prevent accidental deletion
-* Uses `ObjectId` from `bson` to work with MongoDB document IDs
-
----
-
-## License
-
-MIT License
-
----
-
-
+## 7️⃣ Results
+- Code automatically built and tested on commit.
+  Build Execution → `![Build](screenshots/build.png)`   
+- Notifications sent via Gmail SMTP.
+  Email Notification → `![Email](screenshots/email.png)`  
+- Pipeline visible in Jenkins UI.  
 
