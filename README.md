@@ -40,7 +40,7 @@ Set up a Jenkins CI/CD pipeline that:
    - Open browser → `http://<server-ip>:8080`  
    - Unlock Jenkins with initial admin password (`/var/lib/jenkins/secrets/initialAdminPassword`)
    - Jenkins Dashboard →
-     `![Dashboard](screenshots/dashboard.png)`
+     ![Dashboard](screenshots/jenkinsui.png)
 
 3. **Install Plugins**  
    - Go to **Manage Jenkins → Plugins → Available**  
@@ -57,7 +57,8 @@ Set up a Jenkins CI/CD pipeline that:
   - **Authentication**: ✔️  
     - Username: `sumansaurabh123@gmail.com`  
     - Password: Gmail App Password  
-- Save and test with “Send test e‑mail”.
+  - Email configuration →
+     ![Emailconfig](screenshots/extendedEmailConfig.png)
 
 ---
 
@@ -65,7 +66,7 @@ Set up a Jenkins CI/CD pipeline that:
 1. Go to **New Item → Pipeline**  
 2. Link to your GitHub repo (with Jenkinsfile).  
 3. Save.
-- Pipeline Config → `![Pipeline Config](screenshots/pipeline-config.png)` 
+- Pipeline Config → ![Pipeline Config](screenshots/createpipeline.png)
 
 ---
 
@@ -112,9 +113,17 @@ pipeline {
 ---
 
 ## 7️⃣ Results
-- Code automatically built and tested on commit.
-  Build Execution → `![Build](screenshots/build.png)`   
-- Notifications sent via Gmail SMTP.
-  Email Notification → `![Email](screenshots/email.png)`  
-- Pipeline visible in Jenkins UI.  
+- Code automatically built and tested on commit.   
+  Build Execution →
+  ![Build](screenshots/console1.png)
+  ![Build](screenshots/console2.png)
+  ![Build](screenshots/console3.png)
+  ![Build](screenshots/console4.png)
+  
+- Notifications sent via Gmail SMTP.  
+  Email Notification →
+  ![Email](screenshots/successemail.png)
+  
+
+
 
